@@ -3659,7 +3659,2155 @@ img {
    FULL CSS: PROJECTS SECTION & LUXURY CASE STUDY MODAL
    Features: Crystal Glass Viewports, 360° Symmetrical Borders, 3D Chips, Anti-Nyungsep
    ========================================================================== */
+/* ==========================================================================
+   THE VENTURE TURNAROUND MATRIX - EXECUTIVE WAR-ROOM STYLING
+   Theme: Luminous Ice Blue, Modern Bloomberg Terminal, 360° Glass & Anti-Nyungsep
+   ========================================================================== */
 
+/* ==========================================================================
+   10-STAGE EXECUTIVE BUSINESS SIMULATOR (WAR-ROOM PORTAL STYLING)
+   Features: 10-Step Adaptive Stepper, Analytical Dossiers, 360° Glass, Anti-Nyungsep
+   ========================================================================== */
+/* ==========================================================================
+   VIRTUAL DATA ROOM (VDR) & EXECUTIVE CASE ARTIFACTS STYLING
+   ========================================================================== */
+
+.vdr-deck-container {
+  background: #ffffff;
+  border: 1.5px solid rgba(186, 230, 253, 0.95);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08);
+  margin-bottom: 2.5rem;
+}
+
+.vdr-tab-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.65rem;
+  background: linear-gradient(180deg, #f0f7ff 0%, #e0effe 100%);
+  border-bottom: 1px solid rgba(186, 230, 253, 0.9);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.vdr-tab-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.vdr-pulse-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+  animation: turnPulse 2s infinite ease-in-out;
+}
+
+.vdr-main-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #0369a1;
+  margin: 0;
+}
+
+.vdr-nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.vdr-btn-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.5rem 1.15rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vdr-btn-tab.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35);
+}
+
+.vdr-panel-content {
+  padding: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   3 GRAFIK EKONOMETRIKA (SVG VIRTUAL ARTIFACTS)
+   -------------------------------------------------------------------------- */
+.charts-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.chart-artifact-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-span-full {
+  grid-column: 1 / -1;
+}
+
+.chart-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.chart-id-badge {
+  font-family: monospace;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.chart-title-text {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.svg-chart-container {
+  width: 100%;
+  background: #f8fbfe;
+  border: 1px solid #edf2f7;
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+
+.svg-responsive-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart-caption-footer {
+  margin-top: 0.65rem;
+  font-size: 0.71875rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   4 TABEL FINANSIAL & OPERASIONAL LENGKAP
+   -------------------------------------------------------------------------- */
+.tables-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.vdr-table-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.table-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.tbl-badge {
+  font-family: monospace;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: #047857;
+  background: #ecfdf5;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.tbl-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  border: 1px solid #edf2f7;
+}
+
+.vdr-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78125rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.vdr-data-table th {
+  background: #f8fbfe;
+  color: #475569;
+  font-weight: 800;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.vdr-data-table td {
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.row-highlight {
+  background: #f0f9ff;
+  font-weight: 700;
+  color: #0369a1 !important;
+}
+
+.row-burn {
+  background: #fef2f2;
+  font-weight: 700;
+  color: #b91c1c !important;
+}
+
+.badge-status {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* Responsif Mobile untuk VDR */
+@media (max-width: 950px) {
+  .charts-bento-grid,
+  .tables-bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.turnaround-luxe {
+  position: relative;
+  background-color: #f8fbfe;
+  background-image: 
+    radial-gradient(at 0% 10%, rgba(224, 242, 254, 0.7) 0px, transparent 55%),
+    radial-gradient(at 100% 90%, rgba(207, 250, 254, 0.65) 0px, transparent 60%);
+  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+  border-top: 1px solid rgba(226, 232, 240, 0.85);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+  overflow: clip; /* 100% perlindungan dari horizontal overflow pada mobile */
+}
+
+/* Ambient Backing Glow Lights */
+.turn-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  opacity: 0.45;
+  z-index: 1;
+}
+
+.glow-cyan-turn {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(165, 243, 252, 0.75) 0%, transparent 70%);
+  top: 5%;
+  left: -100px;
+}
+
+.glow-azure-turn {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(186, 230, 253, 0.8) 0%, transparent 70%);
+  bottom: 5%;
+  right: -80px;
+}
+
+/* Header Deck */
+.turn-header-deck {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.turn-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #bae6fd;
+  padding: 0.42rem 1.15rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+  margin-bottom: 1rem;
+}
+
+.turn-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+  animation: turnPulse 2s infinite ease-in-out;
+}
+
+@keyframes turnPulse {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.5); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(2, 132, 199, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+}
+
+.turn-tag-text {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.71875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0369a1;
+}
+
+.turn-main-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  line-height: 1.25;
+  margin-bottom: 0.9rem;
+  max-width: 860px;
+}
+
+.turn-subtitle {
+  font-size: clamp(0.96875rem, 1.2vw, 1.0625rem);
+  color: #475569;
+  line-height: 1.65;
+  max-width: 760px;
+  margin-bottom: 1.5rem;
+}
+
+.turn-mission-badge {
+  background: #ffffff;
+  border: 1px solid rgba(186, 230, 253, 0.95);
+  padding: 0.65rem 1.35rem;
+  border-radius: 12px;
+  font-size: 0.84375rem;
+  color: #334155;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   THE COMMAND TOWER TERMINAL SUITE
+   -------------------------------------------------------------------------- */
+.turn-terminal-suite {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border: 1.5px solid rgba(186, 230, 253, 0.95);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 25px 60px -15px rgba(2, 132, 199, 0.16);
+}
+
+/* HUD Telemetri Live Bar */
+.turn-hud-bar {
+  background: linear-gradient(180deg, #f0f7ff 0%, #e0effe 100%);
+  border-bottom: 1px solid rgba(186, 230, 253, 0.9);
+  padding: 1.25rem 1.65rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.hud-metric-box {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.06);
+}
+
+.hud-metric-label {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.65625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.hud-metric-value-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-bottom: 0.45rem;
+}
+
+.hud-metric-num {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.hud-metric-unit {
+  font-size: 0.78125rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.hud-metric-status {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  margin-left: auto;
+}
+
+.text-danger { color: #ef4444; }
+.text-warning { color: #f59e0b; }
+.text-success { color: #10b981; }
+
+.hud-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.hud-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.fill-runway { background: linear-gradient(90deg, #ef4444, #f59e0b); }
+.fill-cash { background: linear-gradient(90deg, #38bdf8, #0284c7); }
+.fill-ratio { background: linear-gradient(90deg, #f59e0b, #10b981); }
+.fill-val { background: linear-gradient(90deg, #6366f1, #0284c7); }
+
+/* --------------------------------------------------------------------------
+   ADAPTIVE 10-STEP PROGRESS STEPPER
+   -------------------------------------------------------------------------- */
+.turn-stepper-track-wrap {
+  background: #f8fbfe;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  padding: 0.85rem 1.65rem;
+}
+
+.turn-stepper-scroll-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.turn-stepper-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.step-node-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.step-node-bubble {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #64748b;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.step-node-item.active .step-node-bubble {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.45);
+  transform: scale(1.1);
+}
+
+.step-node-item.cleared .step-node-bubble {
+  background: #ecfdf5;
+  color: #059669;
+  border-color: #a7f3d0;
+}
+
+.step-node-line {
+  width: 24px;
+  height: 2px;
+  background: #e2e8f0;
+}
+
+.step-node-item.cleared .step-node-line {
+  background: #059669;
+}
+
+/* --------------------------------------------------------------------------
+   STAGE VIEWPORT & ANALYTICAL DOSSIER
+   -------------------------------------------------------------------------- */
+.turn-viewport-card {
+  padding: clamp(1.75rem, 4vw, 3rem);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
+}
+
+.dossier-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dossier-stage-pill {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.71875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid #bae6fd;
+}
+
+.dossier-domain-pill {
+  font-size: 0.71875rem;
+  font-weight: 700;
+  color: #475569;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+}
+
+.dossier-case-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
+  margin: 0 0 1rem 0;
+}
+
+/* Box Konteks Kasus Deskriptif */
+.dossier-context-box {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: 1.35rem 1.65rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.dossier-narrative-p {
+  font-size: 0.9375rem;
+  color: #334155;
+  line-height: 1.72;
+  margin: 0 0 1rem 0;
+}
+
+/* Parameter Keuangan Tabel Kasus */
+.dossier-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  background: #f8fbfe;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.85rem 1.15rem;
+}
+
+.telemetry-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.telemetry-lbl {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.telemetry-val {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* 4 Pilihan Keputusan Strategis Eksekutif */
+.strategic-options-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.option-decision-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: 1.25rem 1.45rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-decision-card:hover {
+  border-color: #38bdf8;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.12);
+}
+
+.option-decision-card.selected {
+  background: linear-gradient(145deg, #f0f7ff 0%, #e0effe 45%, #ffffff 100%) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2), 0 12px 28px -4px rgba(2, 132, 199, 0.2) !important;
+  transform: translateY(-3px);
+}
+
+.option-key-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.option-decision-card.selected .option-key-badge {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.option-body-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.option-header-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.option-logic-desc {
+  font-size: 0.875rem;
+  color: #475569;
+  line-height: 1.55;
+  margin: 0 0 0.5rem 0;
+}
+
+.option-tradeoff-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  background: #f8fbfe;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  align-self: flex-start;
+}
+
+.option-decision-card.selected .option-tradeoff-tag {
+  background: #ffffff;
+  color: #0284c7;
+  border-color: #bae6fd;
+}
+
+/* Action Footer Bar */
+.turn-action-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.turn-feedback-tip {
+  font-size: 0.84375rem;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.btn-lock-decision {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 0.85rem 1.85rem;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+  transition: all 0.25s ease;
+  margin-left: auto;
+}
+
+.btn-lock-decision:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (ANTI-NYUNGSEP SCREEN TEST)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .turn-hud-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .turnaround-luxe {
+    padding: 3.5rem 0;
+  }
+  .turn-hud-bar {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  .turn-viewport-card {
+    padding: 1.25rem 1rem;
+  }
+  .dossier-telemetry-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .option-decision-card {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.15rem;
+  }
+  .btn-lock-decision {
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* ==========================================================================
+   CSS: 10 WIDGET TEKA-TEKI INTERAKTIF BERBEDA (LUXURY GLASS & PURE LOGIC)
+   ========================================================================== */
+
+/* 1. BABAK 1: Matriks Sel Anomali Laba Rugi */
+.puzzle-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.puzzle-cell-box {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: 16px;
+  padding: 1.25rem 1.15rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.puzzle-cell-box:hover {
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.12);
+}
+
+.puzzle-cell-box.selected {
+  background: #f0f9ff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
+}
+
+.cell-label-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 0.35rem;
+}
+
+.cell-number-val {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* 2 & 9. BABAK 2 & 9: Panel Slider / Dial Kalibrasi */
+.puzzle-slider-panel {
+  background: #f8fbfe;
+  border: 1px solid #e0f2fe;
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 3. BABAK 3: Hierarki Sorter Likuidasi Utang */
+.puzzle-sorter-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.sorter-card-item {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.9rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.sorter-rank-num {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.sorter-item-name {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #0f172a;
+  flex-grow: 1;
+}
+
+.sorter-arrows {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.btn-sort-arr {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-sort-arr:hover:not(:disabled) {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.btn-sort-arr:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* 4. BABAK 4: Sakelar Logika Boolean (3 Switches) */
+.puzzle-switches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.switch-capsule-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 18px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.switch-capsule-card.switch-on {
+  background: #f0fdf4 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15) !important;
+}
+
+.switch-toggle-disc {
+  width: 44px;
+  height: 24px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  position: relative;
+  margin-bottom: 0.85rem;
+  transition: background 0.3s;
+}
+
+.switch-toggle-disc::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.switch-capsule-card.switch-on .switch-toggle-disc {
+  background: #059669;
+}
+
+.switch-capsule-card.switch-on .switch-toggle-disc::after {
+  transform: translateX(20px);
+}
+
+.switch-name-label {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.switch-state-text {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.switch-capsule-card.switch-on .switch-state-text {
+  color: #059669;
+}
+
+/* 5. BABAK 5: Alokasi Server Knapsack Trio */
+.puzzle-trio-panel {
+  background: #f8fbfe;
+  border: 1px solid #e0f2fe;
+  border-radius: 20px;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.trio-slider-row {
+  margin-bottom: 1.15rem;
+}
+
+.trio-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: #334155;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.trio-sum-bar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.84375rem;
+  font-weight: 700;
+}
+
+/* 6. BABAK 6: Matriks Game Theory 2x2 */
+.puzzle-game-theory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.nash-cell-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 18px;
+  padding: 1.35rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.nash-cell-card:hover {
+  border-color: #0284c7;
+  transform: translateY(-2px);
+}
+
+.nash-cell-card.selected {
+  background: #f0f9ff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
+}
+
+.nash-cell-name {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.90625rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.45rem;
+}
+
+.nash-cell-payout {
+  font-family: monospace;
+  font-size: 0.8125rem;
+  color: #0284c7;
+}
+
+/* 7. BABAK 7: Node Pemilihan Negara */
+.puzzle-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.node-country-card {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 1.15rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transition: all 0.25s ease;
+}
+
+.node-country-card.selected {
+  background: #ecfeff !important;
+  border-color: #0891b2 !important;
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15) !important;
+}
+
+.node-check-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.node-country-card.selected .node-check-icon {
+  background: #0891b2;
+  color: #ffffff;
+}
+
+.node-country-name {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.node-cost-tag {
+  font-size: 0.71875rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* 8. BABAK 8: Matriks Kepatuhan Regulasi */
+.puzzle-compliance-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.compliance-row-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.compliance-entity-name {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.compliance-select-input {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0f172a;
+  background: #f8fbfe;
+  border: 1px solid #cbd5e1;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 10. BABAK 10: Redlining Naskah Hukum Perjanjian */
+.puzzle-contract-paper {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.contract-doc-header {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.contract-clause-row {
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px dashed #cbd5e1;
+  margin-bottom: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.contract-clause-row:hover {
+  background: #f8fbfe;
+  border-color: #0284c7;
+}
+
+.contract-clause-row.struck-out {
+  background: #fef2f2 !important;
+  border-color: #ef4444 !important;
+  border-style: solid;
+}
+
+.contract-clause-row.struck-out .clause-text-body {
+  text-decoration: line-through;
+  color: #b91c1c;
+}
+
+.clause-action-tag {
+  font-family: monospace;
+  font-size: 0.65625rem;
+  font-weight: 800;
+  color: #64748b;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.contract-clause-row.struck-out .clause-action-tag {
+  color: #dc2626;
+}
+
+.clause-text-body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.9375rem;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIF MOBILE (ANTI-NYUNGSEP 320px - 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .puzzle-matrix-grid { grid-template-columns: 1fr; }
+  .puzzle-switches-grid { grid-template-columns: 1fr; }
+  .puzzle-game-theory-grid { grid-template-columns: 1fr; }
+  .puzzle-nodes-grid { grid-template-columns: 1fr; }
+  .compliance-row-card { flex-direction: column; align-items: flex-start; }
+  .compliance-select-input { width: 100%; }
+}
+/* --------------------------------------------------------------------------
+   THE COMMAND TOWER TERMINAL SUITE
+   -------------------------------------------------------------------------- */
+.turn-terminal-suite {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border: 1.5px solid rgba(186, 230, 253, 0.95);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 25px 60px -15px rgba(2, 132, 199, 0.16);
+}
+
+/* 1. Live Telemetry HUD Bar */
+.turn-hud-bar {
+  background: linear-gradient(180deg, #f0f7ff 0%, #e0effe 100%);
+  border-bottom: 1px solid rgba(186, 230, 253, 0.9);
+  padding: 1.25rem 1.65rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.hud-metric-box {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.06);
+}
+
+.hud-metric-label {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.65625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.hud-metric-value-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-bottom: 0.45rem;
+}
+
+.hud-metric-num {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.hud-metric-unit {
+  font-size: 0.78125rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.hud-metric-status {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  margin-left: auto;
+}
+
+.text-danger { color: #ef4444; }
+.text-warning { color: #f59e0b; }
+.text-success { color: #10b981; }
+
+.hud-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.hud-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.fill-runway { background: linear-gradient(90deg, #ef4444, #f59e0b); }
+.fill-cash { background: linear-gradient(90deg, #38bdf8, #0284c7); }
+.fill-ratio { background: linear-gradient(90deg, #f59e0b, #10b981); }
+
+/* Stepper Indicator */
+.hud-stepper-box {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stepper-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.step-dot.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.4);
+}
+
+.step-connector {
+  flex-grow: 1;
+  height: 2px;
+  background: #e2e8f0;
+}
+
+/* --------------------------------------------------------------------------
+   STAGE VIEWPORT & CONTENT PANELS
+   -------------------------------------------------------------------------- */
+.turn-viewport-card {
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+
+.stage-banner-header {
+  margin-bottom: 2rem;
+}
+
+.stage-badge-number {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.stage-panel-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+}
+
+.stage-panel-desc {
+  font-size: 0.9375rem;
+  color: #475569;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 820px;
+}
+
+/* TAHAP 1: FORENSICS DATA GRID */
+.forensics-data-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.forensic-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: 1.15rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.forensic-card:hover {
+  border-color: #38bdf8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.12);
+}
+
+.forensic-card.selected {
+  border-color: #0284c7;
+  background: #f0f9ff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.forensic-lbl {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.forensic-val {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.forensic-benchmark {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+/* Slider Suite */
+.diagnostic-slider-suite {
+  background: #f8fbfe;
+  border: 1px solid #e0f2fe;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.slider-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.slider-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.slider-formula-math {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-family: monospace;
+  margin-top: 0.15rem;
+}
+
+.slider-output-value {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0284c7;
+}
+
+.turn-range-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.turn-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0284c7;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.turn-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.slider-footer-hints {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+.target-target-hint {
+  color: #0284c7;
+  font-weight: 800;
+}
+
+/* TAHAP 2: LEVERS GRID */
+.levers-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   PERBAIKAN KARTU TAHAP 2: EFEK KLIK SUPER JELAS & JEJAK TERPILIH
+   ========================================================================== */
+
+.lever-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: 20px;
+  padding: 1.35rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.lever-card:hover {
+  border-color: #38bdf8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.12);
+}
+
+/* EFEK SAAT KARTU DIPILIH (SANGAT JELAS & MENYALA) */
+.lever-card.selected {
+  background: linear-gradient(145deg, #f0f9ff 0%, #e0effe 50%, #ffffff 100%) !important;
+  border: 2px solid #0284c7 !important;
+  box-shadow: 
+    0 0 0 4px rgba(2, 132, 199, 0.18),
+    0 14px 28px -4px rgba(2, 132, 199, 0.25) !important;
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Lencana "TERPILIH" Otomatis Muncul di Pojok Kanan */
+.lever-card .lever-selected-badge {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #0284c7;
+  color: #ffffff;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.65625rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+}
+
+.lever-card.selected .lever-selected-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Bilah Lencana Counter Jumlah Terpilih di Header Tahap 2 */
+.lever-counter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fbfe;
+  border: 1px solid #e0f2fe;
+  padding: 0.65rem 1.15rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+}
+
+.lever-counter-text {
+  font-size: 0.8125rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.lever-counter-pill {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+.lever-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.lever-letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #0284c7;
+  color: #ffffff;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lever-cost {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.cost-save { background: #ecfdf5; color: #047857; }
+.cost-spend { background: #fef2f2; color: #b91c1c; }
+.cost-free { background: #f1f5f9; color: #475569; }
+.cost-discount { background: #eff6ff; color: #1d4ed8; }
+
+.lever-name {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.45rem;
+}
+
+.lever-direct {
+  font-size: 0.8125rem;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+.lever-domino {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(241, 245, 249, 0.95);
+}
+
+/* TAHAP 3: GAMBIT 3x3 MATRIX */
+.gambit-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.gambit-select-block {
+  background: #f8fbfe;
+  border: 1px solid #e0f2fe;
+  border-radius: 20px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.gambit-step-tag {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #0369a1;
+  margin-bottom: 1rem;
+}
+
+.gambit-options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.gambit-option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.gambit-option-item:hover {
+  border-color: #0284c7;
+  background: #f0f9ff;
+}
+
+.gambit-option-item input[type="radio"] {
+  margin-top: 2px;
+  accent-color: #0284c7;
+}
+
+/* Action Bar */
+.stage-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.stage-error-tip {
+  font-size: 0.84375rem;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.btn-turn-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 0.85rem 1.75rem;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+  transition: all 0.25s ease;
+  margin-left: auto;
+}
+
+.btn-turn-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   STAGE 4: ACCREDITATION CERTIFICATE & LEAD CAPTURE
+   -------------------------------------------------------------------------- */
+.certificate-glass-box {
+  background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 50%, #ffffff 100%);
+  border: 1.5px solid rgba(186, 230, 253, 0.95);
+  border-radius: 26px;
+  padding: clamp(2rem, 5vw, 3.5rem);
+  box-shadow: 0 20px 50px -10px rgba(2, 132, 199, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-watermark-emblem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 14rem;
+  font-weight: 900;
+  color: rgba(2, 132, 199, 0.03);
+  pointer-events: none;
+}
+
+.cert-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cert-badge-official {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.71875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0369a1;
+  background: #e0f2fe;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid #bae6fd;
+}
+
+.cert-id-tag {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.cert-body-center {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.cert-eval-statement {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #059669;
+  margin-bottom: 0.5rem;
+}
+
+.cert-player-name {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.cert-score-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #bae6fd;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  max-width: 620px;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+}
+
+.cert-score-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35);
+}
+
+.score-number {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.score-max {
+  font-size: 0.6875rem;
+  opacity: 0.85;
+}
+
+.cert-tier-info {
+  text-align: left;
+}
+
+.tier-accredited-label {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.65625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0369a1;
+}
+
+.tier-title-result {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.2rem 0 0.35rem 0;
+}
+
+.tier-desc-result {
+  font-size: 0.8125rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Lead Capture Form */
+.cert-lead-capture-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.lead-box-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+}
+
+.lead-box-sub {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin-bottom: 1.25rem;
+}
+
+.lead-inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 0.75rem;
+}
+
+.lead-input-field {
+  width: 100%;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.84375rem;
+  color: #0f172a;
+  background: #f8fbfe;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.lead-input-field:focus {
+  background: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.btn-lead-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.84375rem;
+  font-weight: 700;
+  padding: 0.75rem 1.35rem;
+  border-radius: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-lead-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45);
+}
+
+.lead-status-msg {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.lead-status-msg.success { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+.lead-status-msg.error { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+
+/* Cert Actions */
+.cert-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-cert-restart {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.84375rem;
+  font-weight: 700;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem 1.35rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cert-restart:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.btn-cert-hire {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.84375rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  padding: 0.75rem 1.65rem;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+  transition: all 0.25s ease;
+}
+
+.btn-cert-hire:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (ANTI-NYUNGSEP SCREEN TEST)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .turn-hud-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .forensics-data-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .levers-selection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gambit-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+  .lead-inputs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .turnaround-luxe {
+    padding: 3.5rem 0;
+  }
+  .turn-terminal-suite {
+    border-radius: 20px;
+  }
+  .turn-hud-bar {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  .turn-viewport-card {
+    padding: 1.25rem 1rem;
+  }
+  .forensics-data-grid {
+    grid-template-columns: 1fr;
+  }
+  .levers-selection-grid {
+    grid-template-columns: 1fr;
+  }
+  .cert-score-cluster {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+  .cert-tier-info {
+    text-align: center;
+  }
+  .cert-footer-actions {
+    flex-direction: column;
+  }
+  .btn-cert-restart,
+  .btn-cert-hire {
+    width: 100%;
+    justify-content: center;
+  }
+}
 /* --------------------------------------------------------------------------
    1. PROJECTS SECTION CONTAINER & LIGHTING
    -------------------------------------------------------------------------- */
