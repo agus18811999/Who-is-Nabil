@@ -97,7 +97,8 @@ async function fetchApiData(showLoadingFallback = true) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), CONFIG.FETCH_TIMEOUT_MS);
 
-    const response = await fetch(`${CONFIG.API_URL}?action=getInitialData`, {
+    // &_t=${Date.now()} MENCEGAH BROWSER MENAHAN DATA LAMA (BYPASS HTTP CACHE)
+    const response = await fetch(`${CONFIG.API_URL}?action=getInitialData&_t=${Date.now()}`, {
       method: 'GET',
       signal: controller.signal
     });
@@ -111,21 +112,21 @@ async function fetchApiData(showLoadingFallback = true) {
       const currentCacheStr = JSON.stringify(AppState.data);
       const newServerDataStr = JSON.stringify(result.data);
 
-      // DELTA CHECK: Hanya update DOM jika ada data yang benar-benar berubah di Google Sheets
+      // JIKA DATA DI GOOGLE SHEETS BERBEDA DARI CACHE BROWSER -> LANGSUNG UPDATE DOM!
       if (currentCacheStr !== newServerDataStr) {
-        console.log('🔄 [OmniFlow SWR Engine] Data baru terdeteksi di Google Sheets, memperbarui tampilan...');
+        console.log('⚡ [Live Sync] Data baru dari Google Sheets terdeteksi! Memperbarui tampilan...');
         AppState.data = result.data;
         setLocalPortfolioCache(result.data);
         renderAllSections();
       } else {
-        console.log('✨ [OmniFlow SWR Engine] Sinkron: Data lokal sudah paling mutakhir (0ms).');
+        console.log('✨ [Live Sync] Data sudah sinkron dengan Google Sheets.');
       }
 
       AppState.isApiConnected = true;
       AppState.isLoading = false;
     }
   } catch (err) {
-    console.warn('[OmniFlow SWR Engine] Background sync notification:', err.message);
+    console.warn('[Live Sync Notice]', err.message);
   }
 }
 
