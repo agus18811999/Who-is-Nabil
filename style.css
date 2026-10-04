@@ -3663,7 +3663,806 @@ img {
    THE VENTURE TURNAROUND MATRIX - EXECUTIVE WAR-ROOM STYLING
    Theme: Luminous Ice Blue, Modern Bloomberg Terminal, 360° Glass & Anti-Nyungsep
    ========================================================================== */
+/* ==========================================================================
+   IDE NABIL - VENTURE THESES & STRATEGIC INNOVATION REPOSITORY STYLING
+   Theme: Luminous Ice Blue, 360° Symmetrical Glass, Interactive Dossier
+   ========================================================================== */
 
+.ide-nabil-page-wrapper {
+  position: relative;
+  min-height: 80vh;
+  animation: fadeInPage 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ide-hero-luxe {
+  position: relative;
+  background-color: #f8fbfe;
+  background-image: 
+    radial-gradient(at 0% 10%, rgba(224, 242, 254, 0.75) 0px, transparent 55%),
+    radial-gradient(at 100% 90%, rgba(207, 250, 254, 0.7) 0px, transparent 60%);
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(4rem, 6vw, 6.5rem) 0;
+  overflow: clip;
+}
+
+/* Ambient Backing Glow Lights */
+.ide-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  opacity: 0.45;
+  z-index: 1;
+}
+
+.glow-azure-ide {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(186, 230, 253, 0.8) 0%, transparent 70%);
+  top: 0;
+  right: -100px;
+}
+
+.glow-cyan-ide {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(165, 243, 252, 0.75) 0%, transparent 70%);
+  bottom: 0;
+  left: -80px;
+}
+
+/* --------------------------------------------------------------------------
+   HERO INTRODUCTION
+   -------------------------------------------------------------------------- */
+.ide-hero-deck {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.ide-tag-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #bae6fd;
+  padding: 0.42rem 1.15rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+  margin-bottom: 1rem;
+}
+
+.ide-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+  animation: turnPulse 2s infinite ease-in-out;
+}
+
+.ide-tag-text {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.71875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0369a1;
+}
+
+.ide-hero-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  line-height: 1.25;
+  margin: 0 auto 0.9rem auto;
+  max-width: 860px;
+}
+
+.ide-hero-description {
+  font-size: clamp(0.96875rem, 1.2vw, 1.0625rem);
+  color: #475569;
+  line-height: 1.65;
+  max-width: 760px;
+  margin: 0 auto 1.75rem auto;
+}
+
+/* Telemetry Summary Ribbon */
+.ide-summary-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  padding: 0.85rem 1.65rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ide-summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ide-sum-val {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0284c7;
+  line-height: 1;
+}
+
+.ide-sum-lbl {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+}
+
+.ide-sum-divider {
+  width: 1px;
+  height: 26px;
+  background: #e2e8f0;
+}
+
+/* --------------------------------------------------------------------------
+   SMART SEARCH & DYNAMIC FILTER BAR
+   -------------------------------------------------------------------------- */
+.ide-controls-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2.75rem;
+}
+
+.ide-search-box-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+}
+
+.search-icon-lead {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 0.9375rem;
+  pointer-events: none;
+}
+
+.ide-search-input {
+  width: 100%;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.9375rem;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1.5px solid rgba(186, 230, 253, 0.95);
+  border-radius: 9999px;
+  padding: 0.85rem 3rem 0.85rem 3rem;
+  box-shadow: 
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 8px 24px -4px rgba(2, 132, 199, 0.08);
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.ide-search-input:focus {
+  border-color: #0284c7;
+  box-shadow: 
+    0 0 0 4px rgba(2, 132, 199, 0.15),
+    0 12px 28px -4px rgba(2, 132, 199, 0.15);
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f1f5f9;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Bilah Tombol Filter */
+.ide-filter-pills-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.ide-filter-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid rgba(203, 213, 225, 0.85);
+  color: #475569;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ide-filter-pill-btn:hover {
+  border-color: #38bdf8;
+  color: #0284c7;
+  transform: translateY(-2px);
+}
+
+.ide-filter-pill-btn.active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+  transform: translateY(-2px);
+}
+
+.ide-filter-counter {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  background: rgba(15, 23, 42, 0.07);
+  color: #0284c7;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.ide-filter-pill-btn.active .ide-filter-counter {
+  background: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   IDEA SHOWCASE BENTO GRID & CARDS
+   -------------------------------------------------------------------------- */
+.ide-bento-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.ide-card-luxe {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 12px 28px -6px rgba(2, 132, 199, 0.07);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ide-card-luxe:hover {
+  transform: translateY(-6px);
+  border-color: rgba(186, 230, 253, 0.95);
+  box-shadow: 0 22px 48px -10px rgba(2, 132, 199, 0.18);
+}
+
+/* Media Viewport Mac Style */
+.ide-media-stage {
+  position: relative;
+  padding: 1rem 1rem 0 1rem;
+  background: linear-gradient(180deg, #f8fbfe 0%, #ffffff 100%);
+}
+
+.ide-media-frame {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: #0f172a;
+  aspect-ratio: 16 / 9;
+}
+
+.ide-img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ide-card-luxe:hover .ide-img-cover {
+  transform: scale(1.08);
+}
+
+.ide-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.ide-floating-badges {
+  position: absolute;
+  inset: 0;
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 2;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ide-cat-pill {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(2, 132, 199, 0.95);
+  color: #ffffff;
+  padding: 0.28rem 0.75rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ide-stage-pill {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: #059669;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Body */
+.ide-card-body {
+  padding: 1.65rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.ide-date-meta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 0.4rem;
+}
+
+.ide-card-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  margin: 0 0 0.65rem 0;
+}
+
+.ide-card-summary {
+  font-size: 0.90625rem;
+  color: #475569;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+/* Core Value Proposition Ribbon (360° Symmetrical Gradient) */
+.ide-value-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 55%, #f8fbfe 100%);
+  border: 1px solid rgba(186, 230, 253, 0.95);
+  border-radius: 14px;
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 1.35rem;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.05);
+}
+
+.ide-value-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0284c7;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.ide-value-text {
+  font-size: 0.84375rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.45;
+}
+
+.ide-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(241, 245, 249, 0.95);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-open-dossier {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: none;
+  border: none;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #0284c7;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-open-dossier:hover {
+  color: #0369a1;
+  gap: 0.7rem;
+}
+
+/* --------------------------------------------------------------------------
+   DEEP-DIVE DETAIL DOSSIER (MODAL & CITATIONS SECTION)
+   -------------------------------------------------------------------------- */
+.idea-dossier-window {
+  max-width: 860px;
+  background: #ffffff;
+  border-radius: 28px;
+}
+
+.dossier-hero-header {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #0f172a;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+.dossier-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dossier-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.9) 100%);
+}
+
+.dossier-hero-badges {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dossier-title-banner {
+  color: #ffffff;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0.5rem 0 0 0;
+}
+
+.idea-dossier-body {
+  padding: 1.75rem 2rem 2.25rem 2rem;
+}
+
+/* 4-Pilar Bedah Ide */
+.dossier-pillars-quad {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-bottom: 2rem;
+}
+
+.dossier-pillar-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 1.25rem 1.45rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.dossier-pillar-label {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.71875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #0284c7;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.dossier-pillar-text {
+  font-size: 0.90625rem;
+  color: #334155;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Attached Documents Strip */
+.dossier-docs-strip {
+  background: #f8fbfe;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 2rem;
+}
+
+.dossier-section-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.dossier-docs-buttons {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.btn-dossier-doc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  border: 1px solid #bae6fd;
+  color: #0284c7;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-dossier-doc:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   BAGIAN KHUSUS: RESOURCES & SITASI REFERENSI (DI AKHIR PARAGRAF)
+   ========================================================================== */
+.dossier-resources-box {
+  background: linear-gradient(145deg, #f8fbfe 0%, #f0f7ff 100%);
+  border: 1.5px solid rgba(186, 230, 253, 0.95);
+  border-radius: 18px;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.resources-box-header {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.resources-spark-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #e0f2fe;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.resources-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.78125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0369a1;
+  margin: 0;
+}
+
+.resources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.resource-item-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1e293b;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.resource-item-pill:hover {
+  background: #f0f9ff;
+  border-color: #38bdf8;
+  color: #0284c7;
+  transform: translateX(4px);
+}
+
+.resource-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.resource-cite-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0284c7;
+  flex-shrink: 0;
+}
+
+.resource-title-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resource-link-arrow {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+/* Footer Modal */
+.dossier-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Skeleton Loading */
+.ide-skeleton-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: 26px;
+  overflow: hidden;
+  padding: 1.25rem;
+}
+
+.skeleton-band-ide {
+  width: 100%;
+  height: 160px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: expSkeletonPulse 1.6s ease-in-out infinite;
+  margin-bottom: 1.25rem;
+}
+
+.skeleton-body-ide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIF MOBILE (ANTI-NYUNGSEP)
+   -------------------------------------------------------------------------- */
+@media (max-width: 950px) {
+  .ide-bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ide-hero-luxe {
+    padding: 3rem 0;
+  }
+
+  .ide-hero-title {
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+  }
+
+  .ide-summary-ribbon {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .ide-sum-divider {
+    display: none;
+  }
+
+  .idea-dossier-window {
+    border-radius: 20px;
+    max-height: 92vh;
+  }
+
+  .idea-dossier-body {
+    padding: 1.25rem;
+  }
+
+  .dossier-hero-header {
+    height: 180px;
+  }
+
+  .dossier-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .dossier-modal-footer .btn-doc-deck,
+  .dossier-modal-footer .btn-doc-download {
+    width: 100%;
+    justify-content: center;
+  }
+}
 /* ==========================================================================
    10-STAGE EXECUTIVE BUSINESS SIMULATOR (WAR-ROOM PORTAL STYLING)
    Features: 10-Step Adaptive Stepper, Analytical Dossiers, 360° Glass, Anti-Nyungsep
@@ -3697,7 +4496,189 @@ img {
   align-items: center;
   gap: 0.65rem;
 }
+/* ==========================================================================
+   CSS: 10 PILAR DOSSIER ANALISIS LENGKAP, TABEL BUDGET & ROADMAP
+   ========================================================================== */
 
+.dossier-meta-subbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dossier-author-tag {
+  font-size: 0.8125rem;
+  color: #0369a1;
+}
+
+.dossier-author-tag strong {
+  color: #0f172a;
+}
+
+.dossier-date-tag {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Stack 10 Kartu Analisis */
+.dossier-ten-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-bottom: 2rem;
+}
+
+.dossier-card-block {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: 1.25rem 1.45rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s ease;
+}
+
+.dossier-card-block:hover {
+  border-color: #bae6fd;
+  box-shadow: 0 6px 18px -4px rgba(2, 132, 199, 0.08);
+}
+
+.dossier-block-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.block-num-pill {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #e0f2fe;
+  color: #0284c7;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.71875rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.block-title-text {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.84375rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #0f172a;
+  margin: 0;
+}
+
+.block-body-text {
+  font-size: 0.90625rem;
+  color: #334155;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   STYLING TABEL ANGGARAN (BUDGET) & ROADMAP (LINIMASA)
+   -------------------------------------------------------------------------- */
+.block-table-special {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%);
+  border-color: #bae6fd;
+}
+
+.dossier-table-scroll-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-top: 0.75rem;
+}
+
+/* Pastikan tabel memiliki batas lebar minimal agar memicu scroll horizontal di HP */
+.dossier-executive-table {
+  width: 100%;
+  min-width: 540px; /* 👉 KUNCI: Menjamin tabel tidak gepeng di layar HP */
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  text-align: left;
+  background: #ffffff;
+}
+
+/* Scrollbar Horizontal Tipis & Mewah */
+.dossier-table-scroll-wrap::-webkit-scrollbar {
+  height: 5px; /* Tinggi scrollbar tipis */
+}
+
+.dossier-table-scroll-wrap::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+
+.dossier-table-scroll-wrap::-webkit-scrollbar-thumb {
+  background: #bae6fd;
+  border-radius: 9999px;
+}
+
+.dossier-table-scroll-wrap::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+.dossier-executive-table th {
+  background: #f0f7ff;
+  color: #0369a1;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-weight: 800;
+  padding: 0.75rem 1rem;
+  border-bottom: 1.5px solid #bae6fd;
+  white-space: nowrap;
+}
+
+.dossier-executive-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.dossier-executive-table tr:hover td {
+  background: #f8fbfe;
+}
+
+/* Status Lencana Roadmap */
+.roadmap-status-badge {
+  display: inline-block;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.status-done {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.status-progress {
+  background: #e0f2fe;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.status-upcoming {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
 .vdr-pulse-icon {
   width: 8px;
   height: 8px;
