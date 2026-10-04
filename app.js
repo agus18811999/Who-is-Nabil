@@ -72,24 +72,57 @@ const AppState = {
 };
 
 // 4. Inisialisasi: Tampilkan Layar Seketika dalam 0ms
+// ==============================================================================
+// INISIALISASI APLIKASI (0ms SWR + CRASH-PROOF + SPA HASH ROUTING)
+// ==============================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  setupNavigation();
-  setupScrollEffects();
-  setupCounters();
-  setupModal();
-  setupContactForm();
+  // 1. Inisialisasi Seluruh Sistem UI Dasar & Event Listener
+  try { setupNavigation(); } catch (e) { console.warn('Nav init:', e); }
+  try { setupScrollEffects(); } catch (e) { console.warn('Scroll init:', e); }
+  try { setupCounters(); } catch (e) { console.warn('Counter init:', e); }
+  try { setupModal(); } catch (e) { console.warn('Modal init:', e); }
+  try { setupContactForm(); } catch (e) { console.warn('Contact init:', e); }
 
-  // 🚀 LANGKAH 1: RENDER INSTAN 0ms JIKA CACHE LOKAL SUDAH ADA
+  // 2. ⚡ LANGKAH 1: RENDER INSTAN 0ms JIKA CACHE LOKAL SUDAH ADA (PERSIS OMNIFLOW)
   if (cachedInitialData) {
     console.log('⚡ [OmniFlow SWR Engine] Menampilkan data instan 0ms dari memori lokal.');
-    renderAllSections();
+    try {
+      renderAllSections();
+    } catch (e) {
+      console.warn('Render cache error:', e);
+    }
   }
 
-  // 🚀 LANGKAH 2: SINKRONISASI SENYAP KE GOOGLE SHEETS DI LATAR BELAKANG
-  fetchApiData(!cachedInitialData);
+  // 3. 🎯 ROUTING SPA: DETEKSI URL HASH (#ide-nabil ATAU PORTOFOLIO UTAMA)
+  // Wajib dipanggil di awal agar jika di-refresh di halaman Ide Nabil langsung terbuka mulus
+  if (typeof handleAppRouting === 'function') {
+    try {
+      handleAppRouting();
+    } catch (e) {
+      console.warn('Routing init:', e);
+    }
+  }
+
+  // 4. Inisialisasi Simulator Bisnis (The Venture Turnaround Matrix)
+  if (typeof TurnaroundEngine !== 'undefined' && typeof TurnaroundEngine.init === 'function') {
+    try {
+      TurnaroundEngine.init();
+    } catch (e) {
+      console.warn('Turnaround init:', e);
+    }
+  }
+
+  // 5. 🚀 LANGKAH 2: SINKRONISASI SENYAP KE GOOGLE SHEETS DI LATAR BELAKANG
+  try {
+    fetchApiData(!cachedInitialData);
+  } catch (e) {
+    console.warn('Background sync error:', e);
+  }
 });
 
+
 // 5. Silent Background Fetch Engine (Persis Mekanisme OmniFlow)
+// GANTI FUNGSI fetchApiData DI js/app.js:
 async function fetchApiData(showLoadingFallback = true) {
   if (!CONFIG.API_URL || CONFIG.API_URL.includes('XXXXX')) return;
 
@@ -97,7 +130,7 @@ async function fetchApiData(showLoadingFallback = true) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), CONFIG.FETCH_TIMEOUT_MS);
 
-    // &_t=${Date.now()} MENCEGAH BROWSER MENAHAN DATA LAMA (BYPASS HTTP CACHE)
+    // Ambil data agregator utama
     const response = await fetch(`${CONFIG.API_URL}?action=getInitialData&_t=${Date.now()}`, {
       method: 'GET',
       signal: controller.signal
@@ -109,21 +142,31 @@ async function fetchApiData(showLoadingFallback = true) {
     const result = await response.json();
 
     if (result.success && result.data) {
-      const currentCacheStr = JSON.stringify(AppState.data);
-      const newServerDataStr = JSON.stringify(result.data);
-
-      // JIKA DATA DI GOOGLE SHEETS BERBEDA DARI CACHE BROWSER -> LANGSUNG UPDATE DOM!
-      if (currentCacheStr !== newServerDataStr) {
-        console.log('⚡ [Live Sync] Data baru dari Google Sheets terdeteksi! Memperbarui tampilan...');
-        AppState.data = result.data;
-        setLocalPortfolioCache(result.data);
-        renderAllSections();
-      } else {
-        console.log('✨ [Live Sync] Data sudah sinkron dengan Google Sheets.');
+      // 🚀 JIKA DATA IDE BELUM ADA DI PAKET UTAMA, AMBIL KHUSUS VIA ?action=getIdeas
+      if (!result.data.ideas || result.data.ideas.length === 0) {
+        try {
+          const resIdeas = await fetch(`${CONFIG.API_URL}?action=getIdeas&_t=${Date.now()}`);
+          const jsonIdeas = await resIdeas.json();
+          if (jsonIdeas && jsonIdeas.success && Array.isArray(jsonIdeas.data)) {
+            result.data.ideas = jsonIdeas.data;
+          }
+        } catch (e) {
+          console.warn('Gagal fetch endpoint spesifik getIdeas:', e);
+        }
       }
 
+      AppState.data = result.data;
+      setLocalPortfolioCache(result.data);
       AppState.isApiConnected = true;
       AppState.isLoading = false;
+
+      // Render ulang seluruh section portofolio dan ide
+      renderAllSections();
+
+      // Jika saat ini sedang di halaman Ide Nabil, langsung render idenya
+      if (window.location.hash === '#ide-nabil') {
+        renderIdeas(result.data.ideas);
+      }
     }
   } catch (err) {
     console.warn('[Live Sync Notice]', err.message);
@@ -480,6 +523,477 @@ function closeModal() {
   // SELALU BUKA KEMBALI KUNCI SCROLL HALAMAN
   document.body.style.overflow = '';
 }
+// ==============================================================================
+// IDE NABIL - VENTURE THESES ENGINE & SPA VIEW-SWITCHER ROUTER
+// ==============================================================================
+
+let rawBackendIdeas = [];
+let activeIdeaCategory = 'all';
+
+// 1. ROUTER VIEW-SWITCHER (PORTFOLIO UTAMA vs HALAMAN IDE NABIL)
+
+
+// Pasang Listener Perubahan URL Hash
+window.addEventListener('hashchange', handleAppRouting);
+
+// 2. FUNGSI RENDER UTAMA IDE NABIL
+function renderIdeas(ideasData, selectedFilter = null) {
+  const container = document.getElementById('ideCardsContainer');
+  const filterContainer = document.getElementById('ideFilterContainer');
+  if (!container) return;
+
+  // Simpan data murni backend ke memori
+  if (Array.isArray(ideasData) && ideasData.length > 0) {
+    rawBackendIdeas = ideasData.filter(i => !i.status || String(i.status).toLowerCase() === 'active');
+  } else if (AppState.data && Array.isArray(AppState.data.ideas)) {
+    rawBackendIdeas = AppState.data.ideas.filter(i => !i.status || String(i.status).toLowerCase() === 'active');
+  }
+
+  // Jika data di Google Sheets memang masih kosong
+  if (!rawBackendIdeas || rawBackendIdeas.length === 0) {
+    if (!AppState.isLoading) {
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1.5rem; background: #ffffff; border-radius: 20px; border: 1px dashed #bae6fd;">
+          <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">💡</span>
+          <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 0.25rem;">Belum Ada Tesis Ide di Google Sheets</h4>
+          <p style="font-size: 0.85rem; color: #64748b;">Pastikan fungsi BERSIHKAN_CACHE_DAN_SIAPKAN_IDE() sudah dijalankan di Google Apps Script.</p>
+        </div>
+      `;
+    }
+    return;
+  }
+
+  if (selectedFilter !== null) {
+    activeIdeaCategory = selectedFilter;
+  }
+
+  // Update Angka Telemetri di Header Ide
+  const elCount = document.getElementById('ideStatCount');
+  const elDomains = document.getElementById('ideStatDomains');
+  if (elCount) elCount.textContent = `${rawBackendIdeas.length}+ Tesis`;
+  if (elDomains) {
+    const uniqueCats = [...new Set(rawBackendIdeas.map(i => (i.category || 'General').trim()))];
+    elDomains.textContent = `${uniqueCats.length} Sektor`;
+  }
+
+  // Render Tombol Filter Otomatis
+  const allCategories = [];
+  rawBackendIdeas.forEach(item => {
+    const cat = (item.category || 'General').trim();
+    if (!allCategories.includes(cat)) allCategories.push(cat);
+  });
+
+  if (filterContainer) {
+    let filterHtml = `
+      <button type="button" class="ide-filter-pill-btn ${activeIdeaCategory === 'all' ? 'active' : ''}" onclick="setIdeaFilter('all')">
+        <span>Semua Ide</span>
+        <span class="ide-filter-counter">${rawBackendIdeas.length}</span>
+      </button>
+    `;
+
+    allCategories.forEach(cat => {
+      const count = rawBackendIdeas.filter(i => (i.category || 'General').trim() === cat).length;
+      const isActive = activeIdeaCategory === cat ? 'active' : '';
+      filterHtml += `
+        <button type="button" class="ide-filter-pill-btn ${isActive}" onclick="setIdeaFilter('${escapeHTML(cat)}')">
+          <span>${escapeHTML(cat)}</span>
+          <span class="ide-filter-counter">${count}</span>
+        </button>
+      `;
+    });
+
+    filterContainer.innerHTML = filterHtml;
+  }
+
+  // Tampilkan Kartu Ide
+  filterIdeasDisplay();
+}
+
+function setIdeaFilter(cat) {
+  activeIdeaCategory = cat;
+  renderIdeas(null, cat);
+}
+
+function filterIdeasDisplay() {
+  const container = document.getElementById('ideCardsContainer');
+  const searchInput = document.getElementById('ideSearchInput');
+  const clearBtn = document.getElementById('btnClearIdeSearch');
+  if (!container) return;
+
+  const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+  if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
+
+  const filtered = rawBackendIdeas.filter(item => {
+    const matchCat = (activeIdeaCategory === 'all') || ((item.category || 'General').trim() === activeIdeaCategory);
+    const textCorpus = `${item.title || ''} ${item.shortSummary || item.short_summary || ''} ${item.problemStatement || item.problem_statement || ''} ${item.category || ''} ${item.resourcesJson || item.resources_json || ''}`.toLowerCase();
+    const matchQuery = !query || textCorpus.includes(query);
+    return matchCat && matchQuery;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem; background: #ffffff; border-radius: 20px; border: 1px dashed #bae6fd;">
+        <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🔍</span>
+        <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Tidak Ada Tesis Ide yang Cocok</h4>
+        <p style="font-size: 0.875rem; color: #64748b;">Coba ubah kata kunci pencarian atau ganti filter kategori.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map((idea, idx) => {
+    const id = idea.ideaId || idea.idea_id || `idea_${idx + 1}`;
+    const title = idea.title || 'Inovasi Tanpa Judul';
+    const cat = idea.category || 'Strategic Thesis';
+    const stage = idea.readinessStage || idea.readiness_stage || 'Validated Concept';
+    const date = idea.dateFormulated || idea.date_formulated || '2026';
+    const summary = idea.shortSummary || idea.short_summary || '';
+    const metrics = idea.keyMetrics || idea.key_metrics || 'Potensi Nilai Komersial Tinggi';
+    const thumb = idea.thumbnailUrl || idea.thumbnail_url || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=85';
+
+    return `
+      <article class="ide-card-luxe" data-id="${escapeHTML(id)}">
+        <div class="ide-media-stage">
+          <div class="ide-media-frame">
+            <img src="${escapeHTML(thumb)}" alt="${escapeHTML(title)}" class="ide-img-cover" loading="lazy" />
+            <div class="ide-img-overlay"></div>
+            <div class="ide-floating-badges">
+              <span class="ide-cat-pill">${escapeHTML(cat)}</span>
+              <span class="ide-stage-pill">${escapeHTML(stage)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ide-card-body">
+          <span class="ide-date-meta">Diformulasikan: ${escapeHTML(date)}</span>
+          <h3 class="ide-card-title">${escapeHTML(title)}</h3>
+          <p class="ide-card-summary">${escapeHTML(summary)}</p>
+
+          <div class="ide-value-ribbon">
+            <div class="ide-value-icon">★</div>
+            <span class="ide-value-text">${escapeHTML(metrics)}</span>
+          </div>
+
+          <div class="ide-card-footer">
+            <button type="button" class="btn-open-dossier" onclick="openIdeaDetail('${escapeHTML(id)}')">
+              <span>Bedah Konsep & Tesis Lengkap</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function clearIdeaSearch() {
+  const input = document.getElementById('ideSearchInput');
+  if (input) {
+    input.value = '';
+    filterIdeasDisplay();
+  }
+}
+
+// 3. MODAL DETAIL DOSSIER (LENGKAP DENGAN SUMBER REFERENSI DI AKHIR PARAGRAF)
+// GANTI FUNGSI openIdeaDetail DI js/app.js DENGAN KODE 10 PILAR INI:
+function openIdeaDetail(ideaId) {
+  const modal = document.getElementById('ideaDetailModal');
+  const body = document.getElementById('ideaModalBody');
+  if (!modal || !body) return;
+
+  const idea = (rawBackendIdeas && rawBackendIdeas.length > 0)
+    ? (rawBackendIdeas.find(i => String(i.ideaId || i.idea_id).trim() === String(ideaId).trim()) || rawBackendIdeas[0])
+    : null;
+
+  if (!idea) return;
+
+  // Metadata Dasar
+  const title = idea.title || 'Detail Konsep Ide';
+  const cat = idea.category || 'Strategic Thesis';
+  const stage = idea.readinessStage || idea.readiness_stage || 'Validated Thesis';
+  const date = idea.dateFormulated || idea.date_formulated || '2026';
+  const heroImg = idea.heroImageUrl || idea.hero_image_url || idea.thumbnailUrl || idea.thumbnail_url || 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1200&q=85';
+
+  // 1. Problem Statement
+  const problem = idea.problemStatement || idea.problem_statement || 'Identifikasi inefisiensi pasar sedang dalam perumusan.';
+  // 2. Analysis Statement
+  const analysis = idea.analysisStatement || idea.analysis_statement || idea.strategicAnalysis || idea.strategic_analysis || 'Kajian analitis mendalam mengenai dinamika pasar dan perilaku konsumen.';
+  // 3. Solution Concept
+  const solution = idea.solutionConcept || idea.solution_concept || 'Konsep solusi inovatif berbasis teknologi terintegrasi.';
+  // 4. Innovation & Value Proposition
+  const valueProp = idea.innovationValueProp || idea.innovation_value_prop || 'Diferensiasi produk bernilai tambah tinggi yang memecahkan masalah mendasar.';
+  // 5. Mekanisme Solution
+  const mechanism = idea.mechanismSolution || idea.mechanism_solution || 'Alur eksekusi operasional end-to-end yang efisien dan terukur.';
+  // 6. Stakeholder Solution
+  const stakeholder = idea.stakeholderSolution || idea.stakeholder_solution || 'Penyelarasan peran dan keuntungan bagi seluruh pemangku kepentingan ekosistem.';
+  // 7. Modelling Solution
+  const modelling = idea.modellingSolution || idea.modelling_solution || idea.businessModel || idea.business_model || 'Model pendapatan, unit economics, dan proyeksi margin yang berkesinambungan.';
+  // 8. Management Risk
+  const risk = idea.managementRisk || idea.management_risk || 'Identifikasi potensi risiko bisnis serta langkah mitigasi operasional dan finansial.';
+
+  // 9. Parsing Budget & Cost Structure (Tabel Anggaran)
+  let budgetList = [];
+  const rawBudget = idea.budgetCostJson || idea.budget_cost_json;
+  if (Array.isArray(rawBudget)) budgetList = rawBudget;
+  else if (typeof rawBudget === 'string') {
+    try { budgetList = JSON.parse(rawBudget); } catch (e) { budgetList = []; }
+  }
+
+  // 10. Parsing Road Map (Tabel Linimasa / Milestones)
+  let roadmapList = [];
+  const rawRoadmap = idea.roadmapJson || idea.roadmap_json;
+  if (Array.isArray(rawRoadmap)) roadmapList = rawRoadmap;
+  else if (typeof rawRoadmap === 'string') {
+    try { roadmapList = JSON.parse(rawRoadmap); } catch (e) { roadmapList = []; }
+  }
+
+  // Lampiran Dokumen
+  let docs = [];
+  const rawDocs = idea.documentLinksJson || idea.document_links_json;
+  if (Array.isArray(rawDocs)) docs = rawDocs;
+  else if (typeof rawDocs === 'string') {
+    try { docs = JSON.parse(rawDocs); } catch (e) { docs = []; }
+  }
+
+  // Sumber Referensi / Sitasi
+  let resources = [];
+  const rawRes = idea.resourcesJson || idea.resources_json;
+  if (Array.isArray(rawRes)) resources = rawRes;
+  else if (typeof rawRes === 'string') {
+    try { resources = JSON.parse(rawRes); } catch (e) { resources = []; }
+  }
+
+  body.innerHTML = `
+    <!-- Banner Hero Atas -->
+    <div class="dossier-hero-header">
+      <img src="${escapeHTML(heroImg)}" alt="${escapeHTML(title)}" class="dossier-hero-img" />
+      <div class="dossier-hero-overlay"></div>
+      <div class="dossier-hero-badges">
+        <div>
+          <span class="ide-cat-pill">${escapeHTML(cat)} • ${escapeHTML(stage)}</span>
+          <h2 class="dossier-title-banner">${escapeHTML(title)}</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body Bedah 10-Pilar Lengkap -->
+    <div class="idea-dossier-body">
+      
+      <!-- Meta Bar -->
+      <div class="dossier-meta-subbar">
+        <span class="dossier-author-tag">Perumus Ide: <strong>Mohmmad Nabilah Abror</strong></span>
+        <span class="dossier-date-tag">Diformulasikan: ${escapeHTML(date)}</span>
+      </div>
+
+      <!-- KUMPULAN 10 STRUKTUR ANALISIS LENGKAP -->
+      <div class="dossier-ten-stack">
+        
+        <!-- 01. Problem Statement -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">01</span>
+            <h4 class="block-title-text">PROBLEM STATEMENT</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(problem)}</p>
+        </div>
+
+        <!-- 02. Analysis Statement -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">02</span>
+            <h4 class="block-title-text">ANALYSIS STATEMENT</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(analysis)}</p>
+        </div>
+
+        <!-- 03. Solution Concept -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">03</span>
+            <h4 class="block-title-text">SOLUTION CONCEPT</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(solution)}</p>
+        </div>
+
+        <!-- 04. Innovation & Value Proposition -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">04</span>
+            <h4 class="block-title-text">INNOVATION & VALUE PROPOSITION</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(valueProp)}</p>
+        </div>
+
+        <!-- 05. Mekanisme Solution -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">05</span>
+            <h4 class="block-title-text">MEKANISME SOLUTION</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(mechanism)}</p>
+        </div>
+
+        <!-- 06. Stakeholder Solution -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">06</span>
+            <h4 class="block-title-text">STAKEHOLDER SOLUTION</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(stakeholder)}</p>
+        </div>
+
+        <!-- 07. Modelling Solution -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">07</span>
+            <h4 class="block-title-text">MODELLING SOLUTION & UNIT ECONOMICS</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(modelling)}</p>
+        </div>
+
+        <!-- 08. Management Risk -->
+        <div class="dossier-card-block">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">08</span>
+            <h4 class="block-title-text">MANAGEMENT RISK & MITIGATION</h4>
+          </div>
+          <p class="block-body-text">${escapeHTML(risk)}</p>
+        </div>
+
+        <!-- 09. BUDGET & COST STRUCTURE (TAMPILAN TABEL RESMI) -->
+        <div class="dossier-card-block block-table-special">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">09</span>
+            <h4 class="block-title-text">BUDGET & COST STRUCTURE</h4>
+          </div>
+          
+          ${budgetList.length > 0 ? `
+            <div class="dossier-table-scroll-wrap">
+              <table class="dossier-executive-table">
+                <thead>
+                  <tr>
+                    <th>Item Alokasi Pengeluaran</th>
+                    <th>Estimasi Anggaran</th>
+                    <th>Deskripsi & Peruntukan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${budgetList.map(b => `
+                    <tr>
+                      <td class="font-bold text-slate-900">${escapeHTML(b.item || '-')}</td>
+                      <td class="font-mono font-bold text-sky-600">${escapeHTML(b.cost || '-')}</td>
+                      <td class="text-slate-600">${escapeHTML(b.desc || '-')}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          ` : `
+            <p class="block-body-text text-slate-400 italic">Rincian struktur biaya sedang dalam proses kalkulasi modul.</p>
+          `}
+        </div>
+
+        <!-- 10. ROAD MAP (TAMPILAN TABEL LINIMASA & MILESTONES) -->
+        <div class="dossier-card-block block-table-special">
+          <div class="dossier-block-header">
+            <span class="block-num-pill">10</span>
+            <h4 class="block-title-text">ROAD MAP & EXECUTION TIMELINE</h4>
+          </div>
+          
+          ${roadmapList.length > 0 ? `
+            <div class="dossier-table-scroll-wrap">
+              <table class="dossier-executive-table">
+                <thead>
+                  <tr>
+                    <th>Tahap / Periode</th>
+                    <th>Milestone Strategis</th>
+                    <th>Target Deliverables</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${roadmapList.map(r => {
+                    const st = String(r.status || '').toLowerCase();
+                    const statusClass = st.includes('selesai') ? 'status-done' : (st.includes('progress') ? 'status-progress' : 'status-upcoming');
+                    return `
+                      <tr>
+                        <td class="font-bold text-sky-700 whitespace-nowrap">${escapeHTML(r.phase || '-')}</td>
+                        <td class="font-bold text-slate-900">${escapeHTML(r.milestone || '-')}</td>
+                        <td class="text-slate-600">${escapeHTML(r.deliverables || '-')}</td>
+                        <td><span class="roadmap-status-badge ${statusClass}">${escapeHTML(r.status || 'Planned')}</span></td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          ` : `
+            <p class="block-body-text text-slate-400 italic">Linimasa tahapan eksekusi sedang dalam penyusunan.</p>
+          `}
+        </div>
+
+      </div>
+
+      <!-- Lampiran Dokumen Blueprint & Deck -->
+      ${docs.length > 0 ? `
+        <div class="dossier-docs-strip">
+          <span class="dossier-section-title">DOKUMEN & BLUEPRINT RESMI:</span>
+          <div class="dossier-docs-buttons">
+            ${docs.map(d => `
+              <a href="${escapeHTML(d.url)}" target="_blank" rel="noopener noreferrer" class="btn-dossier-doc">
+                <i class="fa-regular fa-file-pdf"></i>
+                <span>${escapeHTML(d.label || 'Dokumen')} ↗</span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Sumber Data, Benchmark & Sitasi Riset (Di Akhir Dokumen) -->
+      <div class="dossier-resources-box">
+        <div class="resources-box-header">
+          <div class="resources-spark-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+          <h4 class="resources-heading">SUMBER DATA, BENCHMARK & SITASI RISET</h4>
+        </div>
+        <div class="resources-list">
+          ${resources.length > 0 ? resources.map(res => `
+            <a href="${escapeHTML(res.url)}" target="_blank" rel="noopener noreferrer" class="resource-item-pill">
+              <div class="resource-title-wrap">
+                <span class="resource-cite-dot"></span>
+                <span class="resource-title-text">${escapeHTML(res.title)}</span>
+              </div>
+              <span class="resource-link-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </a>
+          `).join('') : `
+            <p style="font-size: 0.8125rem; color: #64748b; margin: 0;">Sitasi dan rujukan data industri sedang dalam proses validasi.</p>
+          `}
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="dossier-modal-footer">
+        <button type="button" class="btn-close-modal-footer" onclick="closeIdeaModal()">Tutup Naskah</button>
+        <a href="#contact" class="btn-modal-contact" onclick="closeIdeaModal()">
+          <span>Diskusikan Eksekusi Ide Ini</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+    </div>
+  `;
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeIdeaModal() {
+  const modal = document.getElementById('ideaDetailModal');
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// 4. SAMBUNGKAN KE INISIALISASI UTAMA
+// Di dalam event DOMContentLoaded pada js/app.js, pastikan baris ini ada:
 
 // GANTI FUNGSI renderExperience DI js/app.js DENGAN KODE INI:
 // GANTI FUNGSI renderExperience DI js/app.js DENGAN KODE DINAMIS INI:
@@ -838,8 +1352,115 @@ function renderAchievements(achievementsData, filter = 'all') {
     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85',
     'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=85',
     'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=900&q=85',
-    'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=85'
-  ];
+    'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=85',
+   
+  // 01 — Corporate Presentation / Leadership
+  'https://images.unsplash.com/photo-1758691736493-aa6d22c0f8a6?auto=format&fit=crop&w=900&q=85',
+
+  // 02 — Team Collaboration
+  'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=85',
+
+  // 03 — Healthcare / Wellness
+  'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=85',
+
+  // 04 — Creative / Art Event
+  'https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=900&q=85',
+
+  // 05 — Healthcare Institution
+  'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=85',
+
+  // 06 — Modern Corporate Office
+  'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85',
+
+  // 07 — Creative Workspace
+  'https://images.unsplash.com/photo-1511649475669-e288648b2339?auto=format&fit=crop&w=900&q=85',
+
+  // 08 — Business Strategy / Finance
+  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85',
+
+  // 09 — Data Analytics Dashboard
+  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85',
+
+  // 10 — Software Development
+  'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=85',
+
+  // 11 — UX / Design / Project Planning
+  'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=900&q=85',
+
+  // 12 — E-Commerce / Digital Business
+  'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=900&q=85',
+
+  // 13 — Remote Work / Laptop Workspace
+  'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=900&q=85',
+
+  // 14 — Writing / Research / Planning
+  'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=85',
+
+  // 15 — Artificial Intelligence / Robotics
+  'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=85',
+
+  // 16 — Cloud / Server / Data Center
+  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85',
+
+  // 17 — Programming / Technology
+  'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=85',
+
+  // 18 — Productivity / Time Management
+  'https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=900&q=85',
+
+  // 19 — Education
+  'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=900&q=85',
+
+  // 20 — Classroom / Learning
+  'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=85',
+
+  // 21 — Academic / Library
+  'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=85',
+
+  // 22 — Students / University
+  'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=900&q=85',
+
+  // 23 — Science / Laboratory Research
+  'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=85',
+
+  // 24 — Executive / Leadership
+  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85',
+
+  // 25 — Medical / Healthcare Technology
+  'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=85',
+
+  // 26 — Sustainability / Environment
+  'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=900&q=85',
+
+  // 27 — Space / Global Technology
+  'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=85',
+
+  // 28 — AI / Machine Learning
+  'https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=900&q=85',
+
+  // 29 — Renewable Energy / Solar
+  'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=900&q=85',
+
+  // 30 — Architecture / Real Estate
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85',
+
+  // 31 — Logistics / Supply Chain
+  'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=85',
+
+  // 32 — Fintech / Digital Payment
+  'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=85',
+
+  // 33 — Conference / Public Speaking
+  'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=85',
+
+  // 34 — Partnership / Business Deal
+  'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=85',
+
+  // 35 — Retail / Consumer Market
+  'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=85'
+];
+    
+  
 
   // Fungsi cerdas mendeteksi tingkatan kategori juara dari teks database Google Sheets
   function classifyTier(ach) {
@@ -1406,6 +2027,13 @@ if (AppState.data && AppState.data.education) {
   if (Array.isArray(AppState.data.leadership) && typeof renderLeadership === 'function') {
     renderLeadership(AppState.data.leadership);
   }
+  // 8. Skripsi
+  if (AppState.data.education) renderThesis(AppState.data.education);
+
+  // 9. 👉 PASTIKAN BARIS INI ADA AGAR IDE NABIL DILAYANI OTOMATIS:
+  if (Array.isArray(AppState.data.ideas)) {
+    renderIdeas(AppState.data.ideas);
+  }
 }
 
 // 7. MODAL CASE STUDY CONTROLLER
@@ -1652,7 +2280,7 @@ function renderThesis(educationData) {
 
           <div class="thesis-img-container">
             <img 
-              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=85" 
+              src="Salinan dari PPT SIDANG 15 JULI.png" 
               alt="Bursa Efek Indonesia Technology Sector Analytics" 
               class="thesis-cover-img"
               loading="lazy"
@@ -1925,13 +2553,75 @@ function isValidEmail(email) {
 
 let isClickScrolling = false; // Mencegah kedipan indikator saat tombol menu diklik
 
-// GANTI FUNGSI setupNavigation DI js/app.js DENGAN KODE INI:
+// ==============================================================================
+// 1. ROUTER VIEW-SWITCHER DUA ARAH (PORTOFOLIO UTAMA <-> IDE NABIL)
+// ==============================================================================
+function showView(viewName, targetAnchor = null) {
+  const portfolioView = document.getElementById('portfolioMainView');
+  const ideView = document.getElementById('ideNabilView');
+  const navLinkIde = document.querySelector('.nav-link-ide');
+
+  if (viewName === 'ide-nabil') {
+    // Sembunyikan Portofolio Utama, Tampilkan Halaman Ide Nabil
+    if (portfolioView) portfolioView.style.display = 'none';
+    if (ideView) ideView.style.display = 'block';
+
+    // Sorot menu Ide Nabil di Navbar
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    if (navLinkIde) navLinkIde.classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Render data ide jika ada di memori
+    if (typeof renderIdeas === 'function') {
+      renderIdeas(AppState.data ? AppState.data.ideas : null);
+    }
+  } else {
+    // Tampilkan Portofolio Utama, Sembunyikan Ide Nabil
+    if (portfolioView) portfolioView.style.display = 'block';
+    if (ideView) ideView.style.display = 'none';
+    if (navLinkIde) navLinkIde.classList.remove('active');
+
+    // Jika ada target section spesifik (misal #projects, #experience, dll), scroll ke sana
+    if (targetAnchor && targetAnchor.startsWith('#') && targetAnchor !== '#') {
+      setTimeout(() => {
+        const targetSection = document.querySelector(targetAnchor);
+        if (targetSection) {
+          const navbar = document.getElementById('navbar');
+          const navbarHeight = navbar ? navbar.offsetHeight : 72;
+          const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - (navbarHeight + 15);
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 50);
+    }
+  }
+}
+
+function handleAppRouting() {
+  const hash = window.location.hash;
+  if (hash === '#ide-nabil') {
+    showView('ide-nabil');
+  } else {
+    showView('portfolio', hash);
+  }
+}
+
+// Pasang Listener Perubahan Hash
+window.addEventListener('hashchange', handleAppRouting);
+
+// ==============================================================================
+// 2. SISTEM NAVIGASI NAVBAR (BISA PINDAH HALAMAN DENGAN MULUS)
+// ==============================================================================
 function setupNavigation() {
   const navbar = document.getElementById('navbar');
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
 
-  // 1. Toggle Menu Mobile Drawer di HP
+  // Toggle Menu Mobile di HP
   if (menuToggle && navMenu) {
     menuToggle.onclick = () => {
       const isOpen = navMenu.classList.toggle('active');
@@ -1939,7 +2629,7 @@ function setupNavigation() {
     };
   }
 
-  // 2. Pasang Smooth Scroll ke SEMUA Tautan & Tombol yang Berawalan '#' (Termasuk 'Hubungi Saya')
+  // Tangani Seluruh Klik Link Navbar
   const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
 
   allAnchorLinks.forEach(link => {
@@ -1947,58 +2637,34 @@ function setupNavigation() {
       const targetId = link.getAttribute('href');
       if (!targetId || targetId === '#') return;
 
-      const targetSection = document.querySelector(targetId);
+      e.preventDefault();
 
-      if (targetSection) {
-        // e.preventDefault() PENTING: Menjamin halaman tetap meluncur meskipun URL sudah ada tanda #contact
-        e.preventDefault();
+      // Tutup menu drawer di HP jika terbuka
+      if (navMenu) navMenu.classList.remove('active');
+      if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
 
-        isClickScrolling = true;
+      // Update URL di address bar
+      if (history.pushState) {
+        history.pushState(null, null, targetId);
+      }
 
-        // Tutup menu drawer di HP jika sedang terbuka
-        if (navMenu) navMenu.classList.remove('active');
-        if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+      // 🚀 LOGIKA PINDAH TAMPILAN:
+      if (targetId === '#ide-nabil') {
+        showView('ide-nabil');
+      } else {
+        // Jika dari halaman Ide Nabil ingin kembali ke section portofolio:
+        showView('portfolio', targetId);
 
-        // Jika link berasal dari menu utama navbar, pindahkan status aktifnya
+        // Update menu aktif
         if (link.classList.contains('nav-link')) {
           document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
           link.classList.add('active');
         }
-
-        // Hitung jarak kompensasi navbar sticky agar judul section tidak tertutup header
-        const navbarHeight = navbar ? navbar.offsetHeight : 72;
-        const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - (navbarHeight + 15);
-
-        // Gulir halus ke tujuan
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-
-        // Perbarui URL browser tanpa reload
-        if (history.pushState) {
-          history.pushState(null, null, targetId);
-        }
-
-        // FITUR SPESIAL: Jika mengklik tombol kontak, kursor otomatis fokus ke kolom 'Nama Lengkap'
-        if (targetId === '#contact') {
-          setTimeout(() => {
-            const nameInput = document.getElementById('formName');
-            if (nameInput) {
-              nameInput.focus();
-            }
-          }, 650);
-        }
-
-        // Buka kembali sensor scroll spy setelah animasi selesai
-        setTimeout(() => {
-          isClickScrolling = false;
-        }, 800);
       }
     });
   });
 
-  // 3. Efek Shadow pada Navbar saat Mulai Digulir
+  // Efek Shadow Navbar
   window.addEventListener('scroll', () => {
     if (navbar) {
       if (window.scrollY > 25) {
@@ -2830,6 +3496,7 @@ function restartGame() {
 // Inisialisasi Game saat Halaman Selesai Dimuat
 document.addEventListener('DOMContentLoaded', () => {
   TurnaroundEngine.init();
+  handleAppRouting();
 });
 // 11. METRIC NUMBER ANIMATION
 function setupCounters() {
