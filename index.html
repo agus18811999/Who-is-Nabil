@@ -79,6 +79,7 @@
           <li><a href="#achievements" class="nav-link">Prestasi</a></li>
           <li><a href="#certifications" class="nav-link">Sertifikasi</a></li>
           <li><a href="#leadership" class="nav-link">Organisasi</a></li>
+          <li><a href="#ide-nabil" class="nav-link nav-link-ide">Ide Nabil</a></li>
         </ul>
 
         <!-- Action Inside Mobile Menu Drawer -->
@@ -128,6 +129,7 @@
   </header>
 
   <main>
+    <div id="portfolioMainView">
     <!-- 1. Hero Section -->
     <!-- ==================== REVISED HERO SECTION ==================== -->
     <section class="section hero-luxe" id="hero">
@@ -1837,6 +1839,123 @@
 
       </div>
     </section>
+</div>
+<!-- ========================================================================
+       HALAMAN BARU: IDE NABIL (VENTURE & STRATEGIC INNOVATION REPOSITORY)
+       Akses via SPA Router: #ide-nabil
+       ======================================================================== -->
+  <div id="ideNabilView" class="ide-nabil-page-wrapper" style="display: none;">
+    
+    <!-- 1. HERO INTRODUCTION SECTION -->
+    <section class="section ide-hero-luxe" id="ide-hero">
+      <div class="ide-ambient-glow glow-azure-ide" aria-hidden="true"></div>
+      <div class="ide-ambient-glow glow-cyan-ide" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="ide-hero-deck">
+          <div class="ide-tag-capsule">
+            <span class="ide-dot-pulse"></span>
+            <span class="ide-tag-text">VENTURE THESES & STRATEGIC INNOVATION • IDE NABIL</span>
+          </div>
+
+          <h1 class="ide-hero-title">
+            Eksplorasi Peluang Pasar, Rekayasa Model Bisnis &
+            <span class="gradient-text-luxe">Tesis Inovasi Terukur</span>
+          </h1>
+
+          <p class="ide-hero-description">
+            Repositori pemikiran strategis dan formulasi konsep bisnis independen oleh Mohmmad Nabilah Abror dalam mengidentifikasi inefisiensi pasar, merumuskan unit economics berdaya tahan tinggi, dan merancang kerangka kerja siap eksekusi.
+          </p>
+
+          <!-- Telemetry Bar Ide Dinamis -->
+          <div class="ide-summary-ribbon">
+            <div class="ide-summary-item">
+              <span class="ide-sum-val" id="ideStatCount">...</span>
+              <span class="ide-sum-lbl">Tesis Terdaftar</span>
+            </div>
+            <div class="ide-sum-divider"></div>
+            <div class="ide-summary-item">
+              <span class="ide-sum-val" id="ideStatDomains">...</span>
+              <span class="ide-sum-lbl">Domain Industri</span>
+            </div>
+            <div class="ide-sum-divider"></div>
+            <div class="ide-summary-item">
+              <span class="ide-sum-val">Execution Ready</span>
+              <span class="ide-sum-lbl">Tingkat Validasi</span>
+            </div>
+            <div class="ide-sum-divider"></div>
+            <div class="ide-summary-item">
+              <span class="ide-sum-val">100% Backed</span>
+              <span class="ide-sum-lbl">Riset & Referensi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. REAL-TIME SEARCH BAR & FILTER KATEGORI OTOMATIS -->
+        <div class="ide-controls-bar">
+          
+          <!-- Smart Search Box -->
+          <div class="ide-search-box-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon-lead"></i>
+            <input 
+              type="text" 
+              id="ideSearchInput" 
+              placeholder="Cari ide bisnis, masalah pasar, sektor (Fintech, Agrotech, SaaS), atau rujukan sitasi..." 
+              class="ide-search-input"
+              oninput="filterIdeasDisplay()"
+              autocomplete="off"
+            />
+            <button type="button" id="btnClearIdeSearch" class="btn-clear-search" onclick="clearIdeaSearch()" style="display: none;">
+              &times;
+            </button>
+          </div>
+
+          <!-- Bilah Filter Kategori (Diisi Otomatis dari Google Sheets) -->
+          <div class="ide-filter-pills-row" id="ideFilterContainer">
+            <!-- Filter tombol diinjeksi dinamis via JS -->
+          </div>
+
+        </div>
+
+        <!-- 3. IDEA SHOWCASE BENTO FEED -->
+        <div class="ide-bento-grid" id="ideCardsContainer">
+          <!-- Skeleton Shimmer Loader -->
+          <div class="ide-skeleton-card" aria-hidden="true">
+            <div class="skeleton-band-ide"></div>
+            <div class="skeleton-body-ide">
+              <div class="skeleton-line-sm"></div>
+              <div class="skeleton-line-title"></div>
+              <div class="skeleton-line-text"></div>
+              <div class="skeleton-line-kpi"></div>
+            </div>
+          </div>
+          <div class="ide-skeleton-card" aria-hidden="true">
+            <div class="skeleton-band-ide"></div>
+            <div class="skeleton-body-ide">
+              <div class="skeleton-line-sm"></div>
+              <div class="skeleton-line-title"></div>
+              <div class="skeleton-line-text"></div>
+              <div class="skeleton-line-kpi"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========================================================================
+       MODAL DEEP-DIVE DETAIL DOSSIER (BEDAH 4-PILAR & BOX SITASI REFERENSI)
+       ======================================================================== -->
+  <div class="modal-overlay" id="ideaDetailModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window idea-dossier-window">
+      <button type="button" class="modal-close" onclick="closeIdeaModal()" aria-label="Tutup Detail Ide">&times;</button>
+      <div class="modal-body idea-dossier-body" id="ideaModalBody">
+        <!-- Konten detail disuntikkan secara dinamis via JS -->
+      </div>
+    </div>
+  </div>
     <!-- ==================== END REVISED LUXURY CONTACT SUITE ==================== -->
   </main>
 
